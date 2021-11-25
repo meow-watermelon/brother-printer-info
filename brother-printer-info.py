@@ -19,8 +19,8 @@ if __name__ == '__main__':
 
     try:
         resp = requests.get('http://%s/etc/mnt_info.csv' %(args.printer), timeout=30)
-    except:
-        print('ERROR: Request timeout on printer %s 30 seconds.' %(args.printer))
+    except Exception as e:
+        print('ERROR: Unable to initiate HTTP request to printer %s: %s' %(args.printer, e))
         sys.exit(2)
     else:
         if resp.status_code == 200:
